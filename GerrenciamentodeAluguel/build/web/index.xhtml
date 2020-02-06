@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gerrenciamento de Aluguel</title>
+    </h:head>
+    <h:body>
+        <p:panel>
+            Gerrenciamento de Aluguel
+            <br />
+            <ul> <h:link outcome="cliente/cliente" value="cadastro de cliente" /></ul>
+            <ul><h:link outcome="item/item" value="cadastro de item" /></ul>
+        </p:panel>
+        <p:panel>
+            <h:form id="formPrincipal">
+                <p:outputLabel value="Nome de Usuario: "/>
+                <p/>
+                <p:inputText id="nomeUsuario" value="#{indexControle.usuario.nomeUsuario}" required="true" requiredMessage="Nome de usuario obrigatório"/>
+                <p/>
+                <p:outputLabel value="Senha: "/>
+                <p/>
+                <p:inputText type="password" id="senha" value="#{indexControle.usuario.senha}" required="true" requiredMessage="Senha obrigratória"/>
+                <p/>
+                <p:commandButton value="Esqueceu a senha?" action="#{clienteControle.salvar()}" update="@form">
+                </p:commandButton>
+                <p:commandButton value="Logar" action="#{indexControle.autenticar()}" update="@form" >
+                </p:commandButton>
+                <p:messages showIcon="false"/>
+                    <p:commandLink value="Acesso administrativo" 
+                                   process="@this"
+                                   onclick="PF('loginDlg').show()"
+                                   update=":formPrincipal, :login"/>
+
+            </h:form>
+        </p:panel>
+
+        <p:dialog modal="true" 
+                  header="Acesso administrativo" 
+                  id="loginDlg" 
+                  widgetVar="loginDlg" >    
+            <h:form id="login"> 
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="E-mail: "/>
+                    <p:inputText id="campoLogin" size="14" value="#{indexControle.adm.nome}" 
+                                 required="true" requiredMessage="Nome obrigatório" />
+                    <h:outputLabel value="Senha: "/>
+                    <p:password  feedback="false" size="14" value="#{indexControle.adm.senha}"
+                                 required="true" requiredMessage="Senha obrigatória" />
+                    <span/>
+                    <p:commandButton value="Continuar" icon="ui-icon-check" style="width: 150px;" ajax="false"
+                                     action="#{indexControle.autenticarAdm()}" styleClass="ui-state-hover"
+                                     process="login" /> 
+                </h:panelGrid>
+                <h:panelGrid columns="1">
+                    <p:messages />
+                </h:panelGrid> 
+            </h:form >
+        </p:dialog>
+    </h:body>
+</html>
+

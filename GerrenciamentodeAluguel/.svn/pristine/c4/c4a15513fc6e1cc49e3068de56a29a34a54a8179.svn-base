@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gerrenciador De Aluguel</title>
+        <meta name="vierport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:panel>
+            <h:form id="formPrincipal">
+                <p:outputLabel value="Nome do item: "/>
+                <p/>
+                <p:inputText id="nome" value="#{itemControle.item.nome}"/>
+                <p/>
+                <p:outputLabel value="Preço do item: "/>
+                <p/>
+                <p:inputText id="preco" value="#{itemControle.item.preco}"/>
+                <p/>
+                <p:outputLabel value="Quantidade de item: "/>
+                <p/>
+                <p:inputText id="quant" value="#{itemControle.item.quant}"/>
+                <p/>  
+                <p:commandButton value="Cadastrar" action="#{itemControle.salvar()}" update="@form">
+                </p:commandButton>
+                <p/>
+                <p:messages/>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
